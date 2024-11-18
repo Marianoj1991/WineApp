@@ -1,0 +1,64 @@
+.navbarContainer {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.leftSide {
+  display: flex;
+}
+
+.leftSide .imgLogo {
+  width: 200px;
+  height: 60px;
+}
+
+.rigthSide {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 0px 20px;
+}
+
+.buttonLogin {
+  font-size: 18px;
+  transition: transform 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.buttonLogin:hover {
+  text-decoration: underline;
+  transform: scale(1.1);
+}
+
+
+.buttonRegister {
+  font-size: 18px;
+  background-color: #F5A507;
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: #000;
+  font-weight: bold;
+  transition: transform 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.buttonRegister:hover{
+  transform: scale(1.1);
+}
+
+.label {
+  display: flex;
+}
+
+.checkbox {
+  display: none;
+}
+
+.iconMenu {
+  display: none;
+}

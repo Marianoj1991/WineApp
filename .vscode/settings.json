@@ -1,0 +1,7 @@
+{
+  "material-icon-theme.activeIconPack": "nest",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  }
+}

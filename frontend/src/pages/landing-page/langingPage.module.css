@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  padding: 10px;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-size: 30px;
+}
+.text::before, .text:after {
+  content: '"';
+}
+
+.right {
+  flex: 1;
+}
+
+.img {
+  border-radius: 50px;
+}

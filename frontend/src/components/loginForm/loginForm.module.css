@@ -1,11 +1,11 @@
 .container {
     width: 500px;
     /* height: 550px; */
-    padding: 100px 0px;
+    padding: 50px 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
     flex-direction: column;
     background-color: rgba(0, 0, 0, .5);
     border-radius: 20px;
@@ -13,30 +13,53 @@
 
 .form {
     width: 80%;
-    /* background-color: red; */
     display: flex;
     flex-direction: column;
-    gap: 30px;    
+    gap: 20px;    
 }
 
 .nameField {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 
+.label {
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
 .nameField input {
-    width: 50%;
-    padding: 1rem;
+    color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 13px;
     border: 1px solid rgba(255,255,255,255.5);
     border-radius: 10px;
 }
 
 .input {
     width: 100%;
-    padding: 1rem;
+    padding: 13px;
     border: 1px solid rgba(255,255,255,255.5);
     border-radius: 10px;
+}
+
+input::placeholder { 
+    color:rgba(255,255,255,.3);
+    font-style: italic;   
+}
+
+.button {
+    font-size: 18px;
+    background-color: #F5A507;
+    padding: 10px;
+    border-radius: 10px;
+    color: #000;
+    font-weight: bold;
+    transition: transform 300ms ease-in-out;
+    cursor: pointer;
 }
 
 .footer {

@@ -20,10 +20,10 @@ export function NavBar(): JSX.Element {
       </div>
 
       <div className={styles.rigthSide}>
-        <Link to={'Login'}>
+        <Link to={'/login'}>
           <button className={styles.buttonLogin}>Ingresá</button>
         </Link>
-        <Link to={'register'}>
+        <Link to={'/register'}>
           <button className={styles.buttonRegister}>Registrate</button>
         </Link>
       </div>

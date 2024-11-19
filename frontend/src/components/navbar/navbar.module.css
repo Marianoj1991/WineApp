@@ -61,6 +61,12 @@
 
 .menuButton {
   display: none;
+  cursor: pointer;
+  transition: transform 150ms ease-in-out;
+}
+
+.menuButton:hover {
+  transform: scale(1.1);
 }
 
 .rigthSideResponsive {

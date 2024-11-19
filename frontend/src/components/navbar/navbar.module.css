@@ -59,6 +59,47 @@
   display: none;
 }
 
-.iconMenu {
+.menuButton {
   display: none;
+}
+
+.rigthSideResponsive {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  
+  .menuButton {
+    display: block;
+  }
+  
+  .navbarContainer {
+    height: 70px;
+    justify-content: space-between;
+    padding: 10px 10px;
+  }
+
+  .rigthSide {
+    display: none;
+  }
+
+  .rigthSideResponsive {
+      background-color: rgba(0,0,0,0.9);
+      position: absolute;
+      top: 70px;
+      right: 0;
+      height: calc(100vh - 70px);
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .leftSide .imgLogo {
+      width: 120px;
+      height: 40px;
+    }
+    
 }

@@ -1,11 +1,10 @@
 .container {
-  /* background-color: blue; */
+  height: calc(100vh - 100px);
   margin: 0 auto;
   max-width: 980px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 0px;
 }
 
 @media (max-width: 1536px) {
@@ -23,8 +22,6 @@
 @media (max-width: 1280px) {
   .container {
     width: 1024px;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 }
 
@@ -36,26 +33,37 @@
 
 @media (max-width: 768px) {
   .container {
+    padding: 100px 0px;
+    height: auto;
     width: 640px;
-    padding: 30px 0px;
+    /* padding: 70px 0px; */
   }
 }
 
 @media (max-width: 640px) {
   .container {
+    padding: 100px 0px;
+    height: auto;
     width: 475px;
+    /* padding: 100px 0px; */
   }
 }
 
 @media (max-width: 475px) {
   .container {
+    padding: 100px 0px;
+    height: auto;
     width: 390px;
+    /* padding: 100px 0px; */
   }
 }
 
 @media (max-width: 390px) {
   .container {
+    padding: 100px 0px;
+    height: auto;
     width: 340px;
+    /* padding: 100px 0px; */
   }
 }
 

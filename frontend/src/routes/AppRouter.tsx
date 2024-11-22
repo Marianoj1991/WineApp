@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from '../App'
-import { AddWinePage, HomePage, LandingPage, RegisterPage, LoginPage } from '../pages/'
+import { AddWinePage, HomePage, LandingPage, RegisterPage, LoginPage, SingleWinePage } from '../pages/'
+
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />
+      },
+      {
+        path: '/wine/:id',
+        element: <SingleWinePage />
       },
     ]
   }

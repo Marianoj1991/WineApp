@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
-import styles from './App.module.css'
 import { NavBar } from './components/navbar/NavBar'
+
+import styles from './App.module.css'
 
 function App(): JSX.Element {
   return (

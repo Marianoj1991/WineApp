@@ -20,9 +20,10 @@
 }
 
 .dataContainer {
+  font-size: 15px;
   color: #050145;
   width: 70%;
-  padding: 10px 20px;
+  padding: 5px 20px;
   background-color: #D9D9D9;
   display: flex;
   flex-direction: column;
@@ -31,6 +32,7 @@
 
 .dataContainer h3 {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .locationText {
@@ -39,8 +41,41 @@
   gap: 5px;
 }
 
+.locationText p {
+  font-size: 13px;
+  opacity: .7;
+}
+
 .locationIcon {
   width: 20px;
+}
+
+.footerCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerCard .buttonContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footerCard button {
+   font-size: 16px;
+  background-color: #f5a507;
+  padding: 5px 20px;
+  border-radius: 20px;
+  color: #000;
+  /* font-weight: bold; */
+  transition: transform 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.footerCard button:hover {
+  transform: scale(1.1);
+  font-weight: bold;
 }
 
 @media (max-width: 700px) {

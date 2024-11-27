@@ -1,5 +1,6 @@
 .navbarContainer {
   height: 100px;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,15 +74,16 @@
 }
 
 @media (max-width: 700px) {
-  .menuButton {
-    display: block;
-  }
-
   .navbarContainer {
     height: 70px;
     justify-content: space-between;
     padding: 10px 10px;
   }
+  
+  .menuButton {
+    display: block;
+  }
+
 
   .rigthSide {
     display: none;

@@ -6,7 +6,13 @@
   ],
   "compilerOptions": {
     "allowJs": true,
+    "module": "EsNext",
     "moduleResolution": "node",
-    "noImplicitAny": false
+    "types": ["node"],
+    "noImplicitAny": false,
+    "baseUrl": "./", // Define la base para las rutas
+    "paths": {
+      "@/*": ["src/*"] 
+    }
   }
 }

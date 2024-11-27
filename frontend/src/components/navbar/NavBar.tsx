@@ -2,11 +2,15 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import styles from './navbar.module.css'
+import { useAppSelector } from '../../hooks/userState.hook'
 
 export function NavBar(): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [user, setIsUser] = useState<boolean>(true)
+  const user = useAppSelector((state) => state.user)
+  // const [user, setIsUser] = useState<boolean>(false)
   const [ destination, setDestination ] = useState<string>('/')
+
+  console.log(user)
 
   useEffect (() => {
     setDestination(user ? '/home' : '/')

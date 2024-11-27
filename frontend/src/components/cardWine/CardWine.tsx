@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import { IWine } from '../../types'
+
 import styles from './cardWine.module.css'
 
-// interface Props {}
-export function CardWine(): JSX.Element {
+export const CardWine: React.FC<IWine> = ({name, description, price, location})  => {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -14,12 +15,9 @@ export function CardWine(): JSX.Element {
       </div>
 
       <div className={styles.dataContainer}>
-        <h3>Vall Major</h3>
+        <h3>{name}</h3>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio odio
-          harum eum similique nam fugiat!
-        </p>
+        <p>{description}</p>
 
         <div className={styles.locationText}>
           <img
@@ -27,20 +25,30 @@ export function CardWine(): JSX.Element {
             alt='Location Icon png'
             className={styles.locationIcon}
           />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque,
-            culpa!
-          </p>
+          {location?.includes('https://maps') ? (
+            <p className={styles.anchorLocation}>
+              <a
+                href={location}
+                target='__blank'
+              >
+                Ver ubicación en Google Maps
+              </a>
+            </p>
+          ) : location !== null ? (
+            <p>{location}</p>
+          ) : (
+            <p>Sin ubicación</p>
+          )}
         </div>
 
         <div className={styles.footerCard}>
-          <p>$10.000</p>
+          <p>${price}</p>
 
           <div className={styles.buttonContainer}>
             <Link to={'/:id'}>
               <button>Ver más</button>
             </Link>
-              <button>Eliminar</button>
+            <button>Eliminar</button>
           </div>
         </div>
       </div>

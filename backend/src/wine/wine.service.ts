@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Wine } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateWineDto } from './dto/createwine.dto';
 
 @Injectable()
 export class WineService {
@@ -19,7 +20,7 @@ export class WineService {
     })
   }
 
-  async postWine(data: Wine): Promise<Wine | undefined> {
+  async createWine(data: CreateWineDto): Promise<Wine | undefined> {
     return this.prismaService.wine.create({
       data
     })

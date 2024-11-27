@@ -9,8 +9,8 @@
 /* Estilo base para el body */
 body {
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(#050145, #072b90, #3f5aa7);
   min-height: 100vh;
+  background: linear-gradient(#050145, #072b90, #3f5aa7);
   color: #f0f0f0;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;

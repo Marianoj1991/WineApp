@@ -5,6 +5,12 @@
   overflow: hidden; 
   border-radius: 20px;
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,.3);
+  transition: transform 300ms ease-in-out;
+}
+
+.container:hover {
+  transform: translateX(1.2rem);
+  /* transform: scale(1.05); */
 }
 
 .imgContainer {
@@ -48,6 +54,14 @@
 
 .locationIcon {
   width: 20px;
+}
+
+
+.anchorLocation:hover {
+  color: inherit;
+  font-weight: bold;
+  /* transform: scale(1.1); */
+  text-decoration: underline;
 }
 
 .footerCard {

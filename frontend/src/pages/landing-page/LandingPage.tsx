@@ -4,7 +4,13 @@ import styles from './langingPage.module.css'
 export function LandingPage(): JSX.Element {
   return (
     <div className={styles.container}>
+      <div className={styles.superiorCont} >
       <h1>Bienvenid@ a WineApp</h1>
+      <h3>
+        Descubre cómo WineApp puede transformar tu experiencia en el mundo del
+        vino.
+      </h3>
+      </div>
       <div className={styles.subContainer}>
         <div className={styles.left}>
           <p className={styles.text}>

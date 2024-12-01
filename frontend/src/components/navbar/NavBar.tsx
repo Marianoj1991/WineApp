@@ -1,20 +1,26 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks/userState.hook'
+import { logout } from '../../redux/user-store/user.slice'
 
 import styles from './navbar.module.css'
-import { useAppSelector } from '../../hooks/userState.hook'
 
 export function NavBar(): JSX.Element {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const navigate = useNavigate()
   const user = useAppSelector((state) => state.user)
-  // const [user, setIsUser] = useState<boolean>(false)
+  const dispatch = useAppDispatch()
+  const [isOpen, setIsOpen] = useState<boolean>(false)
   const [ destination, setDestination ] = useState<string>('/')
 
-  console.log(user)
 
   useEffect (() => {
-    setDestination(user ? '/home' : '/')
+    setDestination(user.email ? '/home' : '/')
   }, [user])
+
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/')
+  } 
 
   return (
     <div className={styles.navbarContainer}>
@@ -28,7 +34,7 @@ export function NavBar(): JSX.Element {
         </Link>
       </div>
 
-      {!user ? (
+      {!user.email ? (
         <div className={styles.rigthSide}>
           <Link to={'/login'}>
             <button className={styles.buttonLogin}>Ingresá</button>
@@ -40,7 +46,7 @@ export function NavBar(): JSX.Element {
       ) : (
         <div className={styles.rigthSide}>
           <button
-            onClick={() => setIsUser((prev) => !prev)}
+            onClick={handleLogout}
             className={styles.buttonRegister}
           >
             Cerra Sesión
@@ -57,7 +63,7 @@ export function NavBar(): JSX.Element {
         className={styles.menuButton}
       />
       {isOpen &&
-        (!user ? (
+        (!user.email ? (
           <div
             className={`${styles.rigthSideResponsive} ${
               isOpen ? styles.active : ''
@@ -87,7 +93,7 @@ export function NavBar(): JSX.Element {
             }`}
           >
             <button
-              onClick={() => setIsUser((prev) => !prev)}
+              onClick={handleLogout}
               className={styles.buttonRegister}
             >
               Cerra Sesión

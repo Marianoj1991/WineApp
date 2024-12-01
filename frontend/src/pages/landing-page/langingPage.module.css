@@ -5,14 +5,30 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 80px;
+  gap: 50px;
   padding: 10px;
 }
 
+.superiorCont {
+  text-align: center;
+}
+
 h1 {
+  font-size: 3.2rem;
   text-transform: uppercase;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.8);
+}
+
+h3 {
+  /* OTRAS OPCIONES */
+  /* color: #80DEEA;
+  color: #B3EAF2;
+  color: #4CB4C6;
+  color: #66DBE6;
+  color: #FFAB40; */
+  color: #FFEB3B;
+  font-size: 1.4rem;
 }
 
 .subContainer {

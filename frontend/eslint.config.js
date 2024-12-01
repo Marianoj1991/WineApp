@@ -15,7 +15,8 @@ export default [
     rules: {
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
-      'react/prop-types': 'off'
+      'react/prop-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off'
     }
   }
 ]

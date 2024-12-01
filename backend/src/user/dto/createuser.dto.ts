@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, Matches, MinLength } from 'class-validator';
 
 export class CreateUserDto {
   @MinLength(8, { message: 'The email must be at least 8 characters long.' })
@@ -17,8 +17,9 @@ export class CreateUserDto {
   @MinLength(3, { message: 'Last name must be at least 3 characters long.' })
   @IsNotEmpty()
   lastname?: string;
-  
+
   @MinLength(3, { message: 'Username must be at least 3 characters long.' })
+  @Matches(/^[^@]*$/, { message: 'Username must not contain "@"' })
   @IsNotEmpty()
-  username: string
+  username: string;
 }

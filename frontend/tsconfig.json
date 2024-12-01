@@ -12,7 +12,7 @@
     "noImplicitAny": false,
     "baseUrl": "./", // Define la base para las rutas
     "paths": {
-      "@/*": ["src/*"] 
-    }
+      "@/*": ["src/*"]
+    },
   }
 }

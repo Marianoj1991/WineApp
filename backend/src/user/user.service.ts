@@ -2,13 +2,19 @@ import {
   ConflictException,
   HttpException,
   Injectable,
-  NotFoundException,
 } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/createuser.dto';
 import { GetUserDto } from './dto/getuser.dto';
-import { PrismaClientKnownRequestError, PrismaClientUnknownRequestError } from '@prisma/client/runtime/library';
+
+export interface IUser {
+  id: number 
+  email: string 
+  name: string 
+  lastname: string
+  username: string
+}
 
 @Injectable()
 export class UserService {
@@ -29,46 +35,31 @@ export class UserService {
     }
   }
 
-  async getUser(body: GetUserDto): Promise<User | undefined> {
-
-      const user = await this.prismaService.user.findFirst({
-        where: {
-          email: body.email,
-        },
-      });
+  async getUser(body: GetUserDto): Promise<IUser | undefined> {
+      console.log('HERE')
+      let user: any;
+      if (body.email) {
+        user = await this.prismaService.user.findFirst({
+          where: {
+            email: body.email,
+          },
+        });  
+      } else{
+        console.log('USERNAME')
+        user = await this.prismaService.user.findFirst({
+          where: {
+            username: body.username,
+          },
+        });  
+      }
 
       if(!user) {
         throw new HttpException(`No user found with email: ${body.email}`, 404)        
       }
 
-      return user
+      const { password, ...returnUser } = user
+      return returnUser
 
-    // } catch(err) {
-    //   throw new NotFoundException();
-    // }
-
-
-    // try {
-
-    //   const user = await this.prismaService.user.findFirst({
-    //     where: {
-    //       email: body.email
-    //     }
-    //   })
-
-    //   if(!user) {
-    //     throw new HttpException('No se encontró el usuario', 404);
-    //   }
-
-    //   if(user?.password !== body.password) {
-    //      throw new UnauthorizedException();
-    //   }
-
-    //   return user
-
-    // } catch (err) {
-    //   return err.message
-    // }
   }
 
   async createUser(body: CreateUserDto): Promise<User | undefined> {

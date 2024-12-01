@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CreateUserDto } from './dto/createuser.dto';
-import { UserService } from './user.service';
+import { IUser, UserService } from './user.service';
 import { UpdateUserDto } from './dto/updateuser.dto';
 import { User } from '@prisma/client';
 import { GetUserDto } from './dto/getuser.dto';
@@ -20,7 +20,7 @@ export class UserController {
   }
 
   @Post('/user')
-  async getUser(@Body() body: GetUserDto): Promise<User | undefined> {
+  async getUser(@Body() body: GetUserDto): Promise<IUser | undefined> {
     return await this.userService.getUser(body)
 
   }

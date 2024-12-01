@@ -48,7 +48,7 @@ export const CardWine: React.FC<IWine> = ({name, description, price, location}) 
             <Link to={'/:id'}>
               <button>Ver más</button>
             </Link>
-            <button>Eliminar</button>
+            <button className={styles.buttonDelete} >Eliminar</button>
           </div>
         </div>
       </div>

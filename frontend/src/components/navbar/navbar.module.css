@@ -14,8 +14,8 @@
 }
 
 .leftSide .imgLogo {
-  width: 200px;
-  height: 60px;
+  width: 300px;
+  height: auto;
 }
 
 .rigthSide {
@@ -69,7 +69,7 @@
   transform: scale(1.1);
 }
 
-.rigthSideResponsive { 
+.rigthSideResponsive {
   display: none;
 }
 
@@ -77,13 +77,17 @@
   .navbarContainer {
     height: 70px;
     justify-content: space-between;
-    padding: 10px 10px;
+    padding: 10px 20px;
   }
-  
+
+  .leftSide .imgLogo {
+    width: 180px;
+    height: auto;
+  }
+
   .menuButton {
     display: block;
   }
-
 
   .rigthSide {
     display: none;
@@ -110,11 +114,7 @@
   .rigthSideResponsive.active {
     visibility: visible;
     opacity: 1;
-    transform: translateX(100%); 
+    transform: translateX(100%);
   }
 
-  .leftSide .imgLogo {
-    width: 120px;
-    height: 40px;
-  }
 }

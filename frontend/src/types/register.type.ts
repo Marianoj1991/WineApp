@@ -1,7 +1,7 @@
 export interface IRegister {
-  name: string,
+  name?: string,
   lastname?: string,
-  email: string,
-  password: string
-  username: string
+  email?: string,
+  password?: string
+  username?: string
 }

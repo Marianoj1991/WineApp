@@ -37,10 +37,10 @@ export function NavBar(): JSX.Element {
       {!user.email ? (
         <div className={styles.rigthSide}>
           <Link to={'/login'}>
-            <button className={styles.buttonLogin}>Ingresá</button>
+            <button className={styles.buttonLogin}>Login</button>
           </Link>
           <Link to={'/register'}>
-            <button className={styles.buttonRegister}>Registrate</button>
+            <button className={styles.buttonRegister}>SingUp</button>
           </Link>
         </div>
       ) : (
@@ -49,7 +49,7 @@ export function NavBar(): JSX.Element {
             onClick={handleLogout}
             className={styles.buttonRegister}
           >
-            Cerra Sesión
+            Logout
           </button>
         </div>
       )}
@@ -74,7 +74,7 @@ export function NavBar(): JSX.Element {
                 onClick={() => setIsOpen((prev) => !prev)}
                 className={styles.buttonLogin}
               >
-                Ingresá
+                Login
               </button>
             </Link>
             <Link to={'register'}>
@@ -82,7 +82,7 @@ export function NavBar(): JSX.Element {
                 onClick={() => setIsOpen((prev) => !prev)}
                 className={styles.buttonRegister}
               >
-                Registrate
+                Sign Up
               </button>
             </Link>
           </div>
@@ -96,7 +96,7 @@ export function NavBar(): JSX.Element {
               onClick={handleLogout}
               className={styles.buttonRegister}
             >
-              Cerra Sesión
+              Logout
             </button>
           </div>
         ))}

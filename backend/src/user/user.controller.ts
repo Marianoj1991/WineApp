@@ -22,7 +22,6 @@ export class UserController {
   @Post('/user')
   async getUser(@Body() body: GetUserDto): Promise<IUser | undefined> {
     return await this.userService.getUser(body)
-
   }
 
   @Post()

@@ -2,8 +2,10 @@ import {
   ConflictException,
   HttpException,
   Injectable,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
+import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/createuser.dto';
 import { GetUserDto } from './dto/getuser.dto';
@@ -36,52 +38,67 @@ export class UserService {
   }
 
   async getUser(body: GetUserDto): Promise<IUser | undefined> {
-      console.log('HERE')
-      let user: any;
-      if (body.email) {
-        user = await this.prismaService.user.findFirst({
-          where: {
-            email: body.email,
-          },
-        });  
-      } else{
-        console.log('USERNAME')
-        user = await this.prismaService.user.findFirst({
-          where: {
-            username: body.username,
-          },
-        });  
-      }
+    let user: any;
+    if (body.email) {
+      user = await this.prismaService.user.findFirst({
+        where: {
+          email: body.email,
+        },
+      });
+    } else {
+      user = await this.prismaService.user.findFirst({
+        where: {
+          username: body.username,
+        },
+      });
+    }
 
-      if(!user) {
-        throw new HttpException(`No user found with email: ${body.email}`, 404)        
-      }
+    if (!user) {
+      throw new HttpException(`No user found with email: ${body.email}`, 404);
+    }
 
-      const { password, ...returnUser } = user
-      return returnUser
+    const isPasswordValid = await bcrypt.compare(body.password, user.password)
 
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Password incorrect');
+    }
+
+    const { password, ...returnUser } = user;
+
+    return returnUser;
   }
 
   async createUser(body: CreateUserDto): Promise<User | undefined> {
     try {
-      const user = await this.prismaService.user.create({
-        data: body,
-      });
+      
+      const { password, ...infoUser } = body
+      
+      const salt = await bcrypt.genSalt(10)
 
+      const hash = await bcrypt.hash(password, salt)
+      console.log('HASH', hash)
+      
+      const user = await this.prismaService.user.create({
+        data: {
+          ...infoUser,
+          password: hash,
+        },
+      });
       return user;
     } catch (err) {
       if (
         err instanceof Prisma.PrismaClientKnownRequestError &&
         err.code === 'P2002'
       ) {
-        throw new ConflictException(`A user with email "${body.email}" already exists`);
+        throw new ConflictException(
+          `A user with email "${body.email}" or username provided already exists`,
+        );
       }
-      throw new HttpException('An unexpected error ocurred', 500)
+      throw new HttpException('An unexpected error ocurred', 500);
     }
   }
 
   async updateUser(data: object, id: number): Promise<User | undefined> {
-
     try {
       const user = await this.prismaService.user.update({
         data,
@@ -89,33 +106,9 @@ export class UserService {
           id,
         },
       });
-       
+
       return user;
-    } catch(err) {
-      if (err.name === "PrismaClientKnownRequestError" && err.code === "P2025") {
-        throw new ConflictException(
-          `User with ID: ${id} not found`,
-        ); 
-      }
-
-      throw new HttpException('An error occurred while updating the user', 500);
-    }
-
-  }
-
-  async deleteUser(id: number): Promise<User | undefined> {
-
-    try {
-      const user = await this.prismaService.user.delete({
-        where: {
-          id,
-        },
-  
-  
-      });
-      return user;
-      
-    } catch(err) {
+    } catch (err) {
       if (
         err.name === 'PrismaClientKnownRequestError' &&
         err.code === 'P2025'
@@ -125,6 +118,25 @@ export class UserService {
 
       throw new HttpException('An error occurred while updating the user', 500);
     }
+  }
 
+  async deleteUser(id: number): Promise<User | undefined> {
+    try {
+      const user = await this.prismaService.user.delete({
+        where: {
+          id,
+        },
+      });
+      return user;
+    } catch (err) {
+      if (
+        err.name === 'PrismaClientKnownRequestError' &&
+        err.code === 'P2025'
+      ) {
+        throw new ConflictException(`User with ID: ${id} not found`);
+      }
+
+      throw new HttpException('An error occurred while updating the user', 500);
+    }
   }
 }

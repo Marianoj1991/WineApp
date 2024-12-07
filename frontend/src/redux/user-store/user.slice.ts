@@ -1,34 +1,27 @@
 import { createSlice, PayloadAction } from'@reduxjs/toolkit'
 import { initialState } from '../../constants/userInitialState.constant'
-import { IUser } from '../../types'
+import { userLocalStorage } from '../../types'
 
 
 const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    login(state, action: PayloadAction<IUser>) {
-      const { email, lastname, username, name, id } = action.payload
-      state.id = id
+    login(state, action: PayloadAction<userLocalStorage>) {
+      const { email, lastname, username, name, sub } = action.payload
+      state.id = sub
       state.email = email
       state.name = name
       state.lastname = lastname
       state.username = username
       localStorage.setItem('user', JSON.stringify(state))
-
     },
 
-    logout(state) {
-      state.email = ''
-      state.name = ''
-      state.lastname = ''
-      state.username = ''
+    logout() {
       localStorage.removeItem('user')
+      localStorage.removeItem('token')
+      return initialState
     },
-
-    // registerUser (state, payload) {
-
-    // }
   }
 })
 

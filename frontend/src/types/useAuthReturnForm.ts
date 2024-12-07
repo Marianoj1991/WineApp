@@ -10,7 +10,6 @@ export interface IUseAuthFormReturn<FormSchema extends FieldValues> {
   handleSubmit: (
     onValid: SubmitHandler<FormSchema>
   ) => (e?: React.BaseSyntheticEvent) => Promise<void>
-  isLoginPath: boolean
   errors: FieldErrors<FormSchema>
   onSubmitHook:  SubmitHandler<FormSchema>
 }

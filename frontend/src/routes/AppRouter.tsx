@@ -4,6 +4,7 @@ import { AddWinePage, HomePage, LandingPage, RegisterPage, LoginPage, SingleWine
 
 
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/wine/:id',
         element: <SingleWinePage />
+      },
+      {
+        path: '/add-wine',
+        element: <AddWinePage />
       },
     ]
   }

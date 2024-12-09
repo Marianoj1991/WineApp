@@ -14,7 +14,7 @@ export function NavBar(): JSX.Element {
 
 
   useEffect (() => {
-    setDestination(user.email ? '/home' : '/')
+    setDestination(!user.email ? '/' : '/home')
   }, [user])
 
   const handleLogout = () => {
@@ -45,6 +45,9 @@ export function NavBar(): JSX.Element {
         </div>
       ) : (
         <div className={styles.rigthSide}>
+          <Link to={'/add-wine'}>
+            <button className={styles.addWineButton}>+</button>
+          </Link>
           <button
             onClick={handleLogout}
             className={styles.buttonRegister}

@@ -21,9 +21,25 @@
 .rigthSide {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   padding: 0px 20px;
 }
+
+  .addWineButton {
+    color: #000;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    background-color: #f5a507;
+    border-radius: 100%;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .buttonLogin {
   font-size: 18px;

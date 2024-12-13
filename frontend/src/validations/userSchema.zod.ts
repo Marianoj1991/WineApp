@@ -1,11 +1,11 @@
 import {z, ZodType} from 'zod'
 
-type UserLoginType = {
+export type UserLoginType = {
   email: string,
   password: string
 }
 
-type UserRegisterType = {
+export type UserRegisterType = {
   name: string,
   lastname: string,
   username: string,

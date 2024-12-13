@@ -2,8 +2,17 @@ import { Link } from 'react-router-dom'
 import { IWine } from '../../types'
 
 import styles from './cardWine.module.css'
+import { useDeleteWines } from '../../hooks/useDeleteWines'
 
-export const CardWine: React.FC<IWine> = ({name, description, price, location})  => {
+export const CardWine: React.FC<IWine> = ({
+  name,
+  description,
+  price,
+  location,
+  id
+}) => {
+  const { deleteWine, err, loading } = useDeleteWines()
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -48,7 +57,8 @@ export const CardWine: React.FC<IWine> = ({name, description, price, location}) 
             <Link to={'/:id'}>
               <button>Ver más</button>
             </Link>
-            <button className={styles.buttonDelete} >Eliminar</button>
+            <button onClick={() => deleteWine(id)} className={styles.buttonDelete}>
+              Eliminar</button>
           </div>
         </div>
       </div>

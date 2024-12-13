@@ -5,16 +5,18 @@ import { UserModule } from 'src/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { env } from 'process';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { WineModule } from 'src/wine/wine.module';
 
 @Module({
   imports: [
     UserModule,
+    WineModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('SECRET_CONSTANT'),
-        signOptions: { expiresIn: '120s' },
+        signOptions: { expiresIn: '30m' },
       }),
     }),
   ],

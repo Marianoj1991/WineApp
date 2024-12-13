@@ -5,6 +5,7 @@ import { useRegisterForm } from '../../hooks/useRegisterForm'
 import styles from './registerForm.module.css'
 
 export function RegisterForm(): JSX.Element {
+  
   const { handleSubmit, register, errors, onSubmitHook } = useRegisterForm()
 
   return (
@@ -57,8 +58,8 @@ export function RegisterForm(): JSX.Element {
           placeholder='email@example.com'
           {...register('email')}
         />
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
       </label>
+        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
       <label
         htmlFor='usernameId'
@@ -72,10 +73,10 @@ export function RegisterForm(): JSX.Element {
           placeholder='email@example.com'
           {...register('username')}
         />
+      </label>
         {errors.username && (
           <p className={styles.error}>{errors.username.message}</p>
         )}
-      </label>
       <label
         htmlFor='passwordId'
         className={styles.label}
@@ -101,10 +102,10 @@ export function RegisterForm(): JSX.Element {
           placeholder='Password'
           {...register('confirmPassword')}
         />
+      </label>
         {errors.confirmPassword && (
           <p className={styles.error}>{errors.confirmPassword.message}</p>
         )}
-      </label>
 
       <button className={styles.button}>Registrate</button>
       <div className={styles.footer}>

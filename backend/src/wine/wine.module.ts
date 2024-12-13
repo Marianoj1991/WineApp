@@ -6,6 +6,7 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   controllers: [WineController],
   providers: [WineService],
-  imports: [PrismaModule]
+  imports: [PrismaModule],
+  exports: [WineService]
 })
 export class WineModule {}

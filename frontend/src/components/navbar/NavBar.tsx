@@ -19,6 +19,7 @@ export function NavBar(): JSX.Element {
 
   const handleLogout = () => {
     dispatch(logout())
+    setIsOpen(false)
     navigate('/')
   } 
 
@@ -95,6 +96,9 @@ export function NavBar(): JSX.Element {
               isOpen ? styles.active : ''
             }`}
           >
+            <Link to={'/add-wine'}>
+              <button className={styles.addWineButton}>+</button>
+            </Link>
             <button
               onClick={handleLogout}
               className={styles.buttonRegister}

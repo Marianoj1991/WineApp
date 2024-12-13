@@ -24,6 +24,7 @@ axiosInstance.interceptors.request.use(
         if (isTokenExpired(token)) {
           alert('Token has expired')
           localStorage.removeItem('token')
+          localStorage.removeItem('user')
           window.location.href = '/login'
           return Promise.reject(
             new Error('Token expirado, redirigiendo al login')

@@ -19,7 +19,7 @@ export class WineController {
   }
 
   @Post()
-  async postAWine(@Body() body: CreateWineDto): Promise<WineModel | undefined> {
+  async createWine(@Body() body: CreateWineDto): Promise<WineModel | undefined> {
     return this.wineService.createWine(body)
   }
 

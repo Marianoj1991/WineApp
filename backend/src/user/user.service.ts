@@ -20,6 +20,7 @@ export interface IUser {
 
 @Injectable()
 export class UserService {
+  
   constructor(private prismaService: PrismaService) {}
 
   async getAllUsers(): Promise<User[] | undefined> {
@@ -76,7 +77,6 @@ export class UserService {
       const salt = await bcrypt.genSalt(10)
 
       const hash = await bcrypt.hash(password, salt)
-      console.log('HASH', hash)
       
       const user = await this.prismaService.user.create({
         data: {
@@ -85,6 +85,7 @@ export class UserService {
         },
       });
       return user;
+
     } catch (err) {
       if (
         err instanceof Prisma.PrismaClientKnownRequestError &&

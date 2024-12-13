@@ -3,6 +3,23 @@
   width: 90%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
+  text-align: center;
 }
 
+  .addWineButton {
+    color: #000;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    background-color: #f5a507;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

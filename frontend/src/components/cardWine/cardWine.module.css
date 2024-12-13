@@ -37,9 +37,14 @@
 }
 
 .dataContainer h3 {
+  text-align: left;
   color: inherit;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.dataContainer p {
+  text-align: left;
 }
 
 .locationText {

@@ -1,6 +1,7 @@
+import { IWine } from "./wine-type"
 
 
-export type userLocalStorage = {
+export type UserLocalStorageType = {
   email: string
   exp: number
   iat: number
@@ -8,4 +9,5 @@ export type userLocalStorage = {
   name: string
   sub: number
   username: string
+  wines: IWine[]
 }

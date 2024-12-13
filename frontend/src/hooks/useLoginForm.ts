@@ -37,6 +37,7 @@ export const useLoginForm = (): IUseAuthFormReturn<userLoginSchemaType> => {
         [identifier]: email,
         password
       })
+      console.log(data)
       dispatch(login(data))
       navigate('/home')
     } catch (err) {

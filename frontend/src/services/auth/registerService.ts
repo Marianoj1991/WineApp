@@ -1,5 +1,6 @@
-import { jwtDecode } from "jwt-decode"
-import axiosInstance from "../../api/axiosConfig"
+import { jwtDecode } from 'jwt-decode'
+import axiosInstance from '../../api/axiosConfig'
+import { DecodedToken } from '../../types'
 
 interface IRequestBody {
   name: string
@@ -9,31 +10,18 @@ interface IRequestBody {
   password: string
 }
 
-interface DecodedToken {
-  email: string
-  exp: number
-  iat: number
-  lastname: string
-  name: string
-  sub: number
-  username: string
-  access_token: string
-}
-
-export async function registerService(
-  body: IRequestBody
-): Promise<DecodedToken> {
+export async function registerService(body: IRequestBody): Promise<DecodedToken> {
   try {
     if (!body) {
       throw new Error('No body provided')
     }
 
-    const resp = await axiosInstance.post<DecodedToken>('http://localhost:3000/auth/register', body)
+    const resp = await axiosInstance.post<DecodedToken>(
+      '/auth/register',
+      body
+    )
 
     const data = jwtDecode<DecodedToken>(resp.data.access_token)
-
-    console.log('RESP', resp)
-    console.log('DATA', data)
 
     localStorage.setItem('token', resp.data.access_token)
 

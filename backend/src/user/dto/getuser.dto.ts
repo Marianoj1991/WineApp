@@ -7,7 +7,6 @@ export class GetUserDto {
   @IsOptional()
   email: string;
 
-
   @IsNotEmpty()
   password: string;
 

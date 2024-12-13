@@ -1,3 +1,5 @@
+import { IWine } from "./wine-type"
+
 export interface DecodedToken {
   email: string
   exp: number
@@ -6,4 +8,6 @@ export interface DecodedToken {
   name: string
   sub: number
   username: string
+  wines: IWine[]
+  access_token: string
 }

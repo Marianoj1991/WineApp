@@ -31,12 +31,15 @@ const userSlice = createSlice({
       } else {
         state.wines.push(wines)
       }
-      localStorage.setItem('user', JSON.stringify(state))
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ ...state, wines: state.wines })
+      )
     },
     
-    removeWine(state, action) {
+    removeWine(state, action) { 
       state.wines = state.wines.filter(wine => wine.id !== action.payload)
-      localStorage.setItem('user', JSON.stringify(state))
+      localStorage.setItem('user', JSON.stringify({...state, wines: state.wines}))
     }
 
   }

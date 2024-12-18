@@ -1,4 +1,5 @@
 // import { Transform } from 'class-transformer';
+import { Transform } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsOptional, IsString, Min, MinLength } from 'class-validator';
 
 export class CreateWineDto {
@@ -10,7 +11,7 @@ export class CreateWineDto {
   @IsOptional()
   description?: string;
 
-  // @Transform(({ value }) => parseFloat(value))
+  @Transform(({ value }) => parseFloat(value))
   @Min(1000)
   @IsNumber()
   @IsOptional()
@@ -19,9 +20,11 @@ export class CreateWineDto {
   @IsOptional()
   location?: string;
 
-  @IsOptional()
-  image?: string;
-
+  @Transform(({ value }) => +value)
   @IsNotEmpty()
   userId: number;
+
+  @IsString()
+  @IsOptional()
+  img?: string;
 }

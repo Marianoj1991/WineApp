@@ -1,9 +1,11 @@
 
+import { Controller } from 'react-hook-form'
 import { useAddWine } from '../../hooks/useAddWine'
 import styles from './addWineForm.module.css'
 
 export function AddWineForm(): JSX.Element {
-  const { handleSubmit, register, onSubmitHook, errors } = useAddWine()
+
+  const { handleSubmit, register, onSubmitHook, errors, control } = useAddWine()
 
   return (
     <form
@@ -72,6 +74,30 @@ export function AddWineForm(): JSX.Element {
       {errors.location && (
         <p className={styles.error}>{errors.location.message}</p>
       )}
+
+      <label
+        htmlFor='imageId'
+        className={styles.label}
+      >
+        Image:
+        <Controller
+          name='file'
+          control={control}
+          render={({ field }) => (
+            <input
+              className={styles.input}
+              id='imageId'
+              type='file'
+              onChange={(event) => {
+                const file = event.target.files?.[0]
+                field.onChange(file) 
+              }}
+              accept='.png,.jpeg,.jpg' 
+            />
+          )}
+        />
+      </label>
+      {errors.file && <p className={styles.error}>{errors.file.message}</p>}
 
       <button className={styles.button}>Add to my collection</button>
     </form>

@@ -9,7 +9,8 @@ export const CardWine: React.FC<IWine> = ({
   description,
   price,
   location,
-  id
+  id,
+  img
 }) => {
   const { deleteWine, err, loading } = useDeleteWines()
 
@@ -17,7 +18,7 @@ export const CardWine: React.FC<IWine> = ({
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <img
-          src='./wine-image.jpg'
+          src={img ? img : './wine-image.jpg'}
           alt='An image of a wine'
           className={styles.img}
         />
@@ -57,8 +58,12 @@ export const CardWine: React.FC<IWine> = ({
             <Link to={'/:id'}>
               <button>Ver más</button>
             </Link>
-            <button onClick={() => deleteWine(id)} className={styles.buttonDelete}>
-              Eliminar</button>
+            <button
+              onClick={() => deleteWine(id)}
+              className={styles.buttonDelete}
+            >
+              Eliminar
+            </button>
           </div>
         </div>
       </div>

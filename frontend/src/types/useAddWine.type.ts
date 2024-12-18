@@ -11,5 +11,6 @@ export interface IUseAddWineFormReturn<FormSchema extends FieldValues> {
     onValid: SubmitHandler<FormSchema>
   ) => (e?: React.BaseSyntheticEvent) => Promise<void>
   errors: FieldErrors<FormSchema>
-  onSubmitHook: SubmitHandler<FormSchema>
+  onSubmitHook: SubmitHandler<FormSchema>,
+  control: any
 }

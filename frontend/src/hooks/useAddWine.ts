@@ -16,24 +16,28 @@ export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    control
   } = useForm<WineSchemaType>({
     resolver: zodResolver(wineSchema),
     mode: 'onChange'
   })
 
-  const onSubmitHook: SubmitHandler<WineSchemaType> = async (formData) => {
+  const onSubmitHook: SubmitHandler<WineSchemaType> = async (formDataHook) => {
 
-    const { price, ...rest } = formData
+
+    const formData = new FormData()
+    if (formDataHook.file){
+      formData.append('file', formDataHook.file)
+    }
+    formData.append('name', formDataHook.name)
+    formData.append('description', formDataHook.description)
+    formData.append('price', String(formDataHook.price))
+    formData.append('location', formDataHook.location)
+    formData.append('userId', String(userId))
 
     try {
-      const body = {
-        userId: +userId,
-        price: +price,
-        ...rest,
-      }
-
-      const data = await addWineService(body);
+      const data = await addWineService(formData);
       dispatch(addWineForm(data))
       navigate('/home')
 
@@ -50,6 +54,7 @@ export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
     handleSubmit,
     register,
     onSubmitHook,
-    errors
+    errors,
+    control
   }
 }

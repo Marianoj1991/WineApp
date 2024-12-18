@@ -4,13 +4,13 @@ import { jwtDecode } from "jwt-decode";
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: 'http://localhost:3000',
   timeout: 10000, // tiempo de espera opcional
-  headers: { 'Content-Type': 'application/json' }
+  headers: {}
 })
 
 // Verifica si el token ha expirado
 const isTokenExpired = (token: string) => {
   const decoded = jwtDecode(token)
-  console.log(decoded)
+  // console.log(decoded)
   if (!decoded || typeof decoded.exp === 'undefined' ) return true; 
   return decoded.exp * 1000 < Date.now();
 };

@@ -3,7 +3,6 @@ import { IWine } from '../../types'
 
 export async function addWineService(body: Record<string, any>): Promise<IWine | undefined> {
   try {
-    console.log('ADDWINESERVICE', body)
     const resp = await axiosInstance.post('/wine', body)
     return resp.data
   } catch (err) {

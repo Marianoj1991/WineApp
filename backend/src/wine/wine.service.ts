@@ -1,11 +1,20 @@
-import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { Prisma, Wine } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWineDto } from './dto/createwine.dto';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 
 @Injectable()
 export class WineService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   async getAllWines(): Promise<Wine[] | undefined> {
     return this.prismaService.wine.findMany();
@@ -41,21 +50,37 @@ export class WineService {
     }
   }
 
-  async createWine(data: CreateWineDto): Promise<Wine | undefined> {
+  async createWine(
+    data: CreateWineDto,
+    file: Express.Multer.File,
+  ): Promise<Wine | undefined> {
+
+    console.log('AQUI')
+
+
+    let imgUrl = null
 
     try {
-      console.log(data)
-      return this.prismaService.wine.create({
-        data,
-      });
-      
-    } catch (err) {
-      console.log('NEST ERROR')
-      throw new HttpException('An unexpected error ocurred', 500);
 
+      if(file) {
+        const uploadResult = await this.cloudinaryService.uploadFile(file);
+        imgUrl = uploadResult.secure_url;
+      }
+
+      console.log(data);
+      return this.prismaService.wine.create({
+        data: {
+          ...data,
+          img: imgUrl
+        },
+        
+      });
+    } catch (err) {
+      console.log('NEST ERROR');
+      throw new HttpException('An unexpected error ocurred', 500);
     }
   }
-  
+
   async updateWine(data: Wine, id: number): Promise<Wine | undefined> {
     return this.prismaService.wine.update({
       where: {
@@ -66,7 +91,6 @@ export class WineService {
   }
 
   async deleteWine(id: number): Promise<Wine | undefined> {
-
     try {
       return this.prismaService.wine.delete({
         where: {
@@ -77,7 +101,10 @@ export class WineService {
       if (err.code === 'P2025') {
         throw new Error('Wine not found or already deleted');
       }
-      throw new HttpException('Wine not deleted, try again', HttpStatus.BAD_REQUEST)
+      throw new HttpException(
+        'Wine not deleted, try again',
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }

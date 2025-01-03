@@ -10,10 +10,9 @@ export function NavBar(): JSX.Element {
   const user = useAppSelector((state) => state.user)
   const dispatch = useAppDispatch()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [ destination, setDestination ] = useState<string>('/')
+  const [destination, setDestination] = useState<string>('/')
 
-
-  useEffect (() => {
+  useEffect(() => {
     setDestination(!user.email ? '/' : '/home')
   }, [user])
 
@@ -21,7 +20,7 @@ export function NavBar(): JSX.Element {
     dispatch(logout())
     setIsOpen(false)
     navigate('/')
-  } 
+  }
 
   return (
     <div className={styles.navbarContainer}>

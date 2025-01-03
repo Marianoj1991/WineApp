@@ -12,7 +12,7 @@ export function AddWineForm(): JSX.Element {
       className={styles.form}
       onSubmit={handleSubmit(onSubmitHook)}
     >
-      <h2>¡Agrega un Nuevo Vino a la Colección!</h2>
+      <h2>¡Add new wine to the collection!</h2>
       <label
         htmlFor='nombreId'
         className={styles.label}

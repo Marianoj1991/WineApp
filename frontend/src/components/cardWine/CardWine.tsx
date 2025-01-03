@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { IWine } from '../../types'
 
-import styles from './cardWine.module.css'
 import { useDeleteWines } from '../../hooks/useDeleteWines'
+import styles from './cardWine.module.css'
 
 export const CardWine: React.FC<IWine> = ({
   name,
@@ -12,7 +12,7 @@ export const CardWine: React.FC<IWine> = ({
   id,
   img
 }) => {
-  const { deleteWine, err, loading } = useDeleteWines()
+  const { deleteWine, loading } = useDeleteWines()
 
   return (
     <div className={styles.container}>
@@ -41,13 +41,13 @@ export const CardWine: React.FC<IWine> = ({
                 href={location}
                 target='__blank'
               >
-                Ver ubicación en Google Maps
+                See on Google Maps
               </a>
             </p>
           ) : location !== null ? (
             <p>{location}</p>
           ) : (
-            <p>Sin ubicación</p>
+            <p>Without ubication</p>
           )}
         </div>
 
@@ -56,13 +56,13 @@ export const CardWine: React.FC<IWine> = ({
 
           <div className={styles.buttonContainer}>
             <Link to={'/:id'}>
-              <button>Ver más</button>
+              <button>See more</button>
             </Link>
             <button
               onClick={() => deleteWine(id)}
               className={styles.buttonDelete}
             >
-              Eliminar
+              {loading ? 'Deleting' : 'Delete' }
             </button>
           </div>
         </div>

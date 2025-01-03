@@ -16,7 +16,7 @@ import { WineModule } from 'src/wine/wine.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('SECRET_CONSTANT'),
-        signOptions: { expiresIn: '30m' },
+        signOptions: { expiresIn: '5m' },
       }),
     }),
   ],

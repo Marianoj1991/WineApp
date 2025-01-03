@@ -1,5 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
 import { jwtDecode } from "jwt-decode";
+import { store } from '../redux/store';
+import { logout } from '../redux/user-store/user.slice';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: 'http://localhost:3000',
@@ -25,6 +27,7 @@ axiosInstance.interceptors.request.use(
           alert('Token has expired')
           localStorage.removeItem('token')
           localStorage.removeItem('user')
+          store.dispatch(logout())
           window.location.href = '/login'
           return Promise.reject(
             new Error('Token expirado, redirigiendo al login')

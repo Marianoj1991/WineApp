@@ -6,9 +6,15 @@ import { useAppDispatch, useAppSelector } from './userState.hook'
 import { wineSchema, WineSchemaType } from '../validations/wineSchema.zod'
 import { IUseAddWineFormReturn } from '../types/useAddWine.type'
 import { addWineService } from '../services/index.services'
-import { addWineForm } from '../redux/user-store/user.slice'
+import { addWineForm, removeWine, updateWineAction } from '../redux/user-store/user.slice'
+import { updateWine } from '../services/wine/updateWine.service'
 
-export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
+interface Props {
+  isAddWineForm: boolean,
+  id: number | undefined
+}
+
+export const useAddWine = ({ isAddWineForm, id }: Props): IUseAddWineFormReturn<WineSchemaType> => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const userId = useAppSelector((state) => state.user.id)
@@ -17,7 +23,8 @@ export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
     register,
     handleSubmit,
     formState: { errors },
-    control
+    control,
+    setValue,
   } = useForm<WineSchemaType>({
     resolver: zodResolver(wineSchema),
     mode: 'onChange'
@@ -27,6 +34,9 @@ export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
 
 
     const formData = new FormData()
+    if (!isAddWineForm && id !== undefined) {
+      formData.append('id', String(id))
+    }
     if (formDataHook.file){
       formData.append('file', formDataHook.file)
     }
@@ -37,8 +47,14 @@ export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
     formData.append('userId', String(userId))
 
     try {
-      const data = await addWineService(formData);
-      dispatch(addWineForm(data))
+        if (isAddWineForm){
+          const data = await addWineService(formData);
+          dispatch(addWineForm(data))
+        } else {
+          const data = await updateWine(formData)
+          dispatch(updateWineAction(data))
+        } 
+
       navigate('/home')
 
     } catch (err) {
@@ -55,6 +71,7 @@ export const useAddWine = (): IUseAddWineFormReturn<WineSchemaType> => {
     register,
     onSubmitHook,
     errors,
-    control
+    control,
+    setValue
   }
 }

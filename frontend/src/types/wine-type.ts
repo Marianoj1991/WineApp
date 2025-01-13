@@ -5,4 +5,5 @@ export interface IWine {
   price?: number
   location?: string
   img?: string
+  userId?: number
 }

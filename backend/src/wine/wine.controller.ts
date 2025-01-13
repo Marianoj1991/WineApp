@@ -26,17 +26,17 @@ export class WineController {
     @UploadedFile() file: Express.Multer.File,
     @Body() body: CreateWineDto,
   ): Promise<WineModel | undefined> {
-     console.log('Archivo recibido:', file);
-     console.log('Datos recibidos:', body);
     return this.wineService.createWine(body, file);
   }
-
+  
   @Put(':id')
+  @UseInterceptors(FileInterceptor('file'))
   async putWine(
+    @UploadedFile() file: Express.Multer.File,
     @Body() body: WineModel,
     @Param('id', ParseIntPipe) id: number,
   ) {
-    return this.wineService.updateWine(body, id);
+    return this.wineService.updateWine(body, file, id);
   }
 
   @Delete(':id')

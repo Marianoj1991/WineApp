@@ -21,11 +21,13 @@ export class WineService {
   }
 
   async getWine(id: number): Promise<Wine | undefined> {
-    return this.prismaService.wine.findUnique({
-      where: {
-        id,
-      },
-    });
+    try {
+      return this.prismaService.wine.findUnique({
+        where: {
+          id,
+        },
+      });
+    } catch (err) {}
   }
 
   async getWinesByUser(id: number): Promise<Wine[] | []> {
@@ -54,26 +56,19 @@ export class WineService {
     data: CreateWineDto,
     file: Express.Multer.File,
   ): Promise<Wine | undefined> {
-
-    console.log('AQUI')
-
-
-    let imgUrl = null
+    let imgUrl = null;
 
     try {
-
-      if(file) {
+      if (file) {
         const uploadResult = await this.cloudinaryService.uploadFile(file);
         imgUrl = uploadResult.secure_url;
       }
 
-      console.log(data);
       return this.prismaService.wine.create({
         data: {
           ...data,
-          img: imgUrl
+          img: imgUrl,
         },
-        
       });
     } catch (err) {
       console.log('NEST ERROR');
@@ -81,12 +76,31 @@ export class WineService {
     }
   }
 
-  async updateWine(data: Wine, id: number): Promise<Wine | undefined> {
+  async updateWine(
+    data: Wine,
+    file: Express.Multer.File,
+    id: number,
+  ): Promise<Wine | undefined> {
+    let imgUrl = null;
+    const { id: IdWine, price, userId, img: imgBody, ...rest } = data;
+
+    if (file) {
+      const uploadResult = await this.cloudinaryService.uploadFile(file);
+      imgUrl = uploadResult.secure_url;
+    } else {
+      imgUrl = imgBody;
+    }
+
     return this.prismaService.wine.update({
       where: {
         id,
       },
-      data,
+      data: {
+        userId: +userId,
+        price: Number(price),
+        img: imgUrl,
+        ...rest,
+      },
     });
   }
 

@@ -4,6 +4,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('upload')
 export class CloudinaryController {
+  
   constructor(private readonly cloudinaryService: CloudinaryService) {}
 
   @Post()
@@ -13,7 +14,7 @@ export class CloudinaryController {
       new ParseFilePipe({
         validators: [
           new MaxFileSizeValidator({ maxSize: 1024 * 1024 * 4 }),
-          new FileTypeValidator({ fileType: '.(png|jpeg|jpg)' }),
+          new FileTypeValidator({ fileType: '.(png|jpeg|jpg|webp)' }),
         ],
         exceptionFactory: (errors) => {
           // Personaliza el mensaje de error

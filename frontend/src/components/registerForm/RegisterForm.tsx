@@ -13,26 +13,26 @@ export function RegisterForm(): JSX.Element {
       onSubmit={handleSubmit((data) => onSubmitHook(data))}
       className={styles.form}
     >
-      <h2>Registrate</h2>
+      <h2>Create Your Account</h2>
       <div className={styles.nameField}>
         <label
           htmlFor='nombreId'
           className={styles.label}
         >
-          Nombre:
+          Name:
           <input
             className={styles.input}
             id='nombreId'
             placeholder='Mariano, Fernando...'
             {...register('name')}
           />
-          {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+          {errors.name && <p className={styles.errorName}>{errors.name.message}</p>}
         </label>
         <label
           htmlFor='apellidoId'
           className={styles.label}
         >
-          Apellido:
+          Lastname:
           <input
             className={styles.input}
             id='apellidoId'
@@ -41,7 +41,7 @@ export function RegisterForm(): JSX.Element {
             {...register('lastname')}
           />
           {errors.lastname && (
-            <p className={styles.error}>{errors.lastname.message}</p>
+            <p className={styles.errorName}>{errors.lastname.message}</p>
           )}
         </label>
       </div>
@@ -59,7 +59,7 @@ export function RegisterForm(): JSX.Element {
           {...register('email')}
         />
       </label>
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+      {errors.email && <p className={styles.error}>{errors.email.message}</p>}
 
       <label
         htmlFor='usernameId'
@@ -74,9 +74,9 @@ export function RegisterForm(): JSX.Element {
           {...register('username')}
         />
       </label>
-        {errors.username && (
-          <p className={styles.error}>{errors.username.message}</p>
-        )}
+      {errors.username && (
+        <p className={styles.error}>{errors.username.message}</p>
+      )}
       <label
         htmlFor='passwordId'
         className={styles.label}
@@ -103,19 +103,19 @@ export function RegisterForm(): JSX.Element {
           {...register('confirmPassword')}
         />
       </label>
-        {errors.confirmPassword && (
-          <p className={styles.error}>{errors.confirmPassword.message}</p>
-        )}
+      {errors.confirmPassword && (
+        <p className={styles.error}>{errors.confirmPassword.message}</p>
+      )}
 
-      <button className={styles.button}>Registrate</button>
+      <button className={styles.button}>Sign In</button>
       <div className={styles.footer}>
         <p>
-          Ya tienes una cuenta?{' '}
+          Do you already have an account?{' '}
           <Link
             className={styles.link}
             to={'/login'}
           >
-            Click aqui
+            Click here
           </Link>
         </p>
       </div>

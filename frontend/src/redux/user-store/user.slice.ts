@@ -1,7 +1,6 @@
-import { createSlice, PayloadAction } from'@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { initialState } from '../../constants/userInitialState.constant'
 import { DecodedToken } from '../../types'
-
 
 const userSlice = createSlice({
   name: 'users',
@@ -18,10 +17,15 @@ const userSlice = createSlice({
       localStorage.setItem('user', JSON.stringify(state))
     },
 
-    logout() {
+    logout(state) {
       localStorage.removeItem('user')
       localStorage.removeItem('token')
-      return initialState
+      state.name = ''
+      state.email = null
+      state.lastname = ''
+      state.username = ''
+      state.id = null
+      state.wines = []
     },
 
     addWineForm(state, action) {
@@ -36,14 +40,31 @@ const userSlice = createSlice({
         JSON.stringify({ ...state, wines: state.wines })
       )
     },
-    
-    removeWine(state, action) { 
-      state.wines = state.wines.filter(wine => wine.id !== action.payload)
-      localStorage.setItem('user', JSON.stringify({...state, wines: state.wines}))
-    }
 
+    removeWine(state, action) {
+      state.wines = state.wines.filter((wine) => wine.id !== action.payload)
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ ...state, wines: state.wines })
+      )
+    },
+
+    updateWineAction(state, action) {
+      const updateWine = action.payload
+      const index = state.wines.findIndex(wine => wine.id === updateWine.id)
+
+      if (index !== -1) {
+        state.wines[index] = updateWine
+      } else {
+        state.wines.push(updateWine)
+      }
+
+      localStorage.setItem('user', JSON.stringify({...state, wines:state.wines}))
+
+    }
   }
 })
 
-export const { login, logout, addWineForm, removeWine } = userSlice.actions
+export const { login, logout, addWineForm, removeWine, updateWineAction } =
+  userSlice.actions
 export default userSlice.reducer

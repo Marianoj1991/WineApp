@@ -55,8 +55,8 @@ export const CardWine: React.FC<IWine> = ({
           <p>${price}</p>
 
           <div className={styles.buttonContainer}>
-            <Link to={'/:id'}>
-              <button>See more</button>
+            <Link to={`/wine/${id}`}>
+              <button>Edit</button>
             </Link>
             <button
               onClick={() => deleteWine(id)}

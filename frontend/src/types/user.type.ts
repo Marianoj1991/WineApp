@@ -2,8 +2,8 @@ import { IWine } from "./wine-type";
 
 
 export interface IUser {
-  id: number;
-  email: string;
+  id: number | null;
+  email: string | null;
   name: string;
   lastname: string; 
   username: string;

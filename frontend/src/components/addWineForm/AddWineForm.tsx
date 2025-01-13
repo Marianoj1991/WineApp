@@ -1,18 +1,38 @@
-
 import { Controller } from 'react-hook-form'
 import { useAddWine } from '../../hooks/useAddWine'
 import styles from './addWineForm.module.css'
+import { useLocation } from 'react-router-dom'
+import { IWine } from '../../types'
+import { useEffect } from 'react'
 
-export function AddWineForm(): JSX.Element {
+interface Props {
+  wine: IWine | null
+}
 
-  const { handleSubmit, register, onSubmitHook, errors, control } = useAddWine()
+export function AddWineForm({ wine }: Props): JSX.Element {
+  const { pathname } = useLocation()
+  const isAddWineForm = pathname === '/add-wine' ? true : false
+  const { handleSubmit, register, onSubmitHook, errors, control, setValue } = useAddWine({ isAddWineForm, id: wine?.id })
+
+  const titleForm = isAddWineForm
+    ? '¡Add new wine to the collection!'
+    : 'Edit your wine'
+
+  useEffect(() => {
+    if (wine) {
+      setValue('name', wine.name || '')
+      setValue('description', wine.description || '')
+      setValue('price', String(wine.price)|| '0')
+      setValue('location', wine.location || '')
+    }
+  }, [wine, setValue])
 
   return (
     <form
       className={styles.form}
       onSubmit={handleSubmit(onSubmitHook)}
     >
-      <h2>¡Add new wine to the collection!</h2>
+      <h2>{titleForm}</h2>
       <label
         htmlFor='nombreId'
         className={styles.label}
@@ -90,9 +110,9 @@ export function AddWineForm(): JSX.Element {
               type='file'
               onChange={(event) => {
                 const file = event.target.files?.[0]
-                field.onChange(file) 
+                field.onChange(file)
               }}
-              accept='.png,.jpeg,.jpg' 
+              accept='.png,.jpeg,.jpg'
             />
           )}
         />

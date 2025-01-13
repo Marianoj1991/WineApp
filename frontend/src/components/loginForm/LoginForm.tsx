@@ -8,7 +8,7 @@ export function LoginForm(): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <h2>Inicia Sesión</h2>
+      <h2>Welcome Back</h2>
       <form
         onSubmit={handleSubmit(onSubmitHook)}
         className={styles.form}
@@ -42,16 +42,16 @@ export function LoginForm(): JSX.Element {
           />
         </label>
 
-        <button className={styles.button}>{'Inicia Sesión'}</button>
+        <button className={styles.button}>Log In</button>
 
         <div className={styles.footer}>
           <p>
-            No tienes una cuenta?{' '}
+            Don{"'"}t you have an account?{' '}
             <Link
               className={styles.link}
               to={'/register'}
             >
-              Click aquí
+              Click here
             </Link>
           </p>
         </div>

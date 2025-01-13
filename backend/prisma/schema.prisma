@@ -19,7 +19,7 @@ model User {
   password String
   name     String 
   lastname String?
-  username String  @unique
+  username String  @unique 
   posts    Wine[]
 }
 

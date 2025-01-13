@@ -12,7 +12,6 @@ const axiosInstance: AxiosInstance = axios.create({
 // Verifica si el token ha expirado
 const isTokenExpired = (token: string) => {
   const decoded = jwtDecode(token)
-  // console.log(decoded)
   if (!decoded || typeof decoded.exp === 'undefined' ) return true; 
   return decoded.exp * 1000 < Date.now();
 };
@@ -25,8 +24,6 @@ axiosInstance.interceptors.request.use(
       if (token) {
         if (isTokenExpired(token)) {
           alert('Token has expired')
-          localStorage.removeItem('token')
-          localStorage.removeItem('user')
           store.dispatch(logout())
           window.location.href = '/login'
           return Promise.reject(

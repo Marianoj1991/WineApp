@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from '../App'
-import { AddWinePage, HomePage, LandingPage, RegisterPage, LoginPage, SingleWinePage } from '../pages/'
+import { AddWinePage, HomePage, LandingPage, RegisterPage, LoginPage, EditWinePage } from '../pages/'
 
 import ErrorPage from '../pages/errorPage/ErrorPage'
 import { PublicRoute, ProtectedRoute } from './'
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/wine/:id',
-            element: <SingleWinePage />
+            element: <EditWinePage />
           },
           {
             path: '/add-wine',

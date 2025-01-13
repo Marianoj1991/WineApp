@@ -33,7 +33,6 @@ h2 {
     padding: 13px;
     border: 1px solid rgba(255,255,255,255.5);
     border-radius: 10px;
-    margin-bottom: 1rem;
 }
 
 
@@ -49,9 +48,14 @@ input::placeholder {
     font-style: italic;   
 }
 
+.errorName {
+    font-size: .8rem;
+    color: rgba(255, 0, 0, .7);
+}
+
 .error {
     margin: -15px 0px 0px;
-    font-size: .7rem;
+    font-size: .8rem;
     color: rgba(255, 0, 0, .7);
 }
 

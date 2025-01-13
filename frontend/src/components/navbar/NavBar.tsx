@@ -45,6 +45,12 @@ export function NavBar(): JSX.Element {
         </div>
       ) : (
         <div className={styles.rigthSide}>
+          <div className={styles.userInfoButton}>
+            <span>{`${user.name.slice(0, 1)}${user.lastname.slice(
+              0,
+              1
+            )}`}</span>
+          </div>
           <Link to={'/add-wine'}>
             <button className={styles.addWineButton}>+</button>
           </Link>
@@ -57,14 +63,19 @@ export function NavBar(): JSX.Element {
         </div>
       )}
 
-      <img
-        src='/menu.png'
-        width={40}
-        height={40}
-        onClick={() => setIsOpen((prev) => !prev)}
-        alt='Icon menu burguer'
-        className={styles.menuButton}
-      />
+      <div className={styles.mobileInfoContainer}>
+        <div className={styles.userInfoButton}>
+          <span>{`${user.name.slice(0, 1)}${user.lastname.slice(0, 1)}`}</span>
+        </div>
+        <img
+          src='/menu.png'
+          width={40}
+          height={40}
+          onClick={() => setIsOpen((prev) => !prev)}
+          alt='Icon menu burguer'
+          className={styles.menuButton}
+        />
+      </div>
       {isOpen &&
         (!user.email ? (
           <div

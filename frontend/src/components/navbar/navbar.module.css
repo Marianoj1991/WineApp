@@ -25,21 +25,37 @@
   padding: 0px 20px;
 }
 
-  .addWineButton {
-    color: #000;
-    font-weight: bold;
-    font-size: 1.3rem;
-    width: 40px;
-    height: 40px;
-    background-color: #f5a507;
-    border-radius: 100%;
-    cursor: pointer;
-    border: none;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.userInfoButton {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  background-color: #f5a507;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addWineButton {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  background-color: #f5a507;
+  border-radius: 100%;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .buttonLogin {
   font-size: 18px;
@@ -75,6 +91,10 @@
   display: none;
 }
 
+.mobileInfoContainer {
+  display: none;
+}
+
 .menuButton {
   display: none;
   cursor: pointer;
@@ -99,6 +119,11 @@
   .leftSide .imgLogo {
     width: 180px;
     height: auto;
+  }
+
+  .mobileInfoContainer {
+    display: flex;
+    gap: 20px;
   }
 
   .menuButton {
@@ -132,5 +157,4 @@
     opacity: 1;
     transform: translateX(100%);
   }
-
 }

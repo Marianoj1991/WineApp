@@ -32,11 +32,9 @@ export async function loginService(body: IRequestBody): Promise<DecodedToken> {
     }
   } catch (err: any) {
     if(err.response) {
-      console.log('AQUILOGINSERVICE1')
       alert(err.response.data.message)
       throw new Error(err.response.data.message)
     } else {
-      console.log('AQUILOGINSERVICE3')
       console.log(err)
       throw new Error('Server not respond')
     }
